@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DongTube - Streaming</title>
+<link rel="icon" type="image/png" href="https://b.top4top.io/p_35449hn0x0.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>DongTube - Streaming</h1>
+  <button id="themeSwitcher" title="Ganti Tema">🎨</button>
+</header>
+
+<div class="container">
+
+  <div class="search-wrapper">
+    <input type="text" id="searchInput" placeholder="Search anime...">
+    <select id="filterSelect">
+      <option value="all">All Status</option>
+      <option value="Ongoing">Ongoing</option>
+      <option value="Complete">Complete</option>
+    </select>
+    <button id="resetBtn">Reset</button>
+  </div>
+
+  <div id="animeList" class="grid">
+    </div>
+
+  <div id="skeletonWrapper" class="grid" style="margin-top:1rem;"></div>
+
+</div>
+
+<footer>
+  &copy; 2025 DongTube - Streaming
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+/* :root adalah tema default (Biru) */
+:root {
+  --bg: linear-gradient(180deg,#071025,#0f1724);
+  --card: rgba(11,18,32,0.7);
+  --card-hover: rgba(11,18,32,0.9);
+  --accent: #7dd3fc; /* Warna utama */
+  --accent2: #38bdf8; /* Warna utama lebih gelap/terang */
+  --text: #e6eef8;
+  --subtext: #98a0b3;
+  --radius: 14px;
+  --transition: 0.3s ease;
+  --shadow: 0 6px 20px rgba(0,0,0,0.7);
+  --glow: 0 0 15px rgba(125,211,252,0.6); /* Warna glow */
+}
+
+/* Basic Reset */
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  transition: background 0.5s ease;
+}
+
+/* Header */
+header {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  transition: color var(--transition);
+}
+header::after {
+  content:'';
+  position:absolute;
+  left:50%;
+  bottom:-10px;
+  transform:translateX(-50%);
+  width:50px;
+  height:4px;
+  background: var(--accent2);
+  border-radius:2px;
+  box-shadow: 0 0 10px var(--accent2);
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+/* Theme Switcher Button */
+#themeSwitcher {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--card);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: grid;
+  place-content: center;
+  transition: var(--transition);
+}
+#themeSwitcher:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: var(--glow);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Grid cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 1rem;
+}
+
+/* Card Styles */
+.card {
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  position: relative;
+  text-decoration: none; /* Menghilangkan underline dari link */
+}
+.card:hover {
+  transform: translateY(-5px) scale(1.07);
+  box-shadow: var(--shadow), var(--glow);
+  background: var(--card-hover);
+}
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.card .info {
+  padding: 0.5rem 0.7rem;
+}
+.card .title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  height: 2.4em; /* batasi 2 baris */
+  overflow: hidden;
+}
+.card .status {
+  font-size: 0.75rem;
+  color: var(--subtext);
+  margin-top: 2px;
+}
+
+/* Search & Filter */
+.search-wrapper {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+#searchInput, #filterSelect {
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  outline: none;
+  background: var(--card);
+  color: var(--text);
+  transition: var(--transition);
+}
+#searchInput:focus, #filterSelect:focus { box-shadow: 0 0 10px var(--accent); border-color: var(--accent); }
+#resetBtn {
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+#resetBtn:hover { opacity: 0.85; transform: scale(1.05); }
+
+/* Skeleton Loading */
+.skeleton {
+  width: 100%;
+  height: 320px; /* Disesuaikan dengan tinggi card + info */
+  background: linear-gradient(90deg,rgba(255,255,255,0.05) 25%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+/* ======== Watch Page Styles ======== */
+#nowPlaying {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--accent2);
+  text-shadow: 0 0 8px var(--accent);
+}
+
+.player-wrapper {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+.player-wrapper iframe {
+  width: 100%;
+  height:480px;
+  border-radius: 12px;
+  border: none;
+}
+
+.watch-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.anime-details {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+}
+.anime-details img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.anime-details .title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+.anime-details .status {
+  font-size: 0.9rem;
+  color: var(--subtext);
+}
+
+.episode-section {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.episode-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(80px,1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 10px; /* space for scrollbar */
+}
+.episode {
+  background: rgba(0,0,0,0.2);
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+.episode:hover {
+  background: var(--accent2);
+  color: #000;
+  transform: scale(1.05);
+}
+.episode.active {
+  background: var(--accent);
+  color: #000;
+  font-weight: bold;
+  box-shadow: var(--glow);
+  border-color: var(--accent2);
+}
+
+.ep-nav {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.btn {
+  flex-grow: 1;
+  background: var(--accent);
+  color: #000;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn:hover:not(:disabled) { opacity: 0.85; transform: scale(1.02); }
+.btn:disabled {
+  background: var(--subtext);
+  color: #555;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Footer */
+footer {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem;
+  color: var(--subtext);
+  border-top: 1px solid rgba(152,160,179,0.2);
+}
+
+
+/* Media Queries */
+@media(max-width: 768px){
+  .watch-grid {
+    grid-template-columns: 1fr; /* Stack on smaller screens */
+  }
+  .player-wrapper iframe { height:360px; }
+  header h1 { font-size: 1.5rem; }
+}
+
+@media(max-width: 600px){
+  .grid { grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); }
+  .player-wrapper iframe{ height:240px; }
+}
+
+@media(max-width: 400px){
+  .grid { grid-template-columns: repeat(2,1fr); }
+  .player-wrapper iframe{ height:180px; }
+}
